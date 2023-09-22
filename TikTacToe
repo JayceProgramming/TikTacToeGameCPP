@@ -1,0 +1,345 @@
+// Name: Jayce I 
+// Date: 9/13/2023
+// Reason: Trying Different Array Project
+
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+int main()
+{
+    string arrTikTakToeBoard[3][3] =
+    {
+        {" ", " ", " "},
+        {" ", " ", " "},
+        {" ", " ", " "}
+    };
+
+    int arrMoves[9][2] =
+    {
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0}
+    };
+
+    int decision = 0;
+    int sentinal = 0;
+
+    cout << " " << endl;
+    cout << "      C:1 C:2 C:3" << endl;
+    cout << " " << endl;
+    cout << "      - - - - - - " << endl;
+    cout << "R:1   " << " " << arrTikTakToeBoard[0][0] + " | " + arrTikTakToeBoard[0][1] + " | " + arrTikTakToeBoard[0][2] << endl;
+    cout << "      - - - - - - " << endl;
+    cout << "R:2   " << " " << arrTikTakToeBoard[1][0] + " | " + arrTikTakToeBoard[1][1] + " | " + arrTikTakToeBoard[1][2] << endl;
+    cout << "      - - - - - - " << endl;
+    cout << "R:3   " << " " << arrTikTakToeBoard[2][0] + " | " + arrTikTakToeBoard[2][1] + " | " + arrTikTakToeBoard[2][2] << endl;
+    cout << "      - - - - - - " << endl;
+    cout << " " << endl;
+
+    while (sentinal != -1)
+    {
+        // Resetting First Row Of The Board
+        for (int resetFirstRow = 0; resetFirstRow < 3; resetFirstRow++)
+        {
+            arrTikTakToeBoard[0][resetFirstRow] = " ";
+        }
+
+        // Resetting The Second Row Of The Board
+        for (int resetFirstRow = 0; resetFirstRow < 3; resetFirstRow++)
+        {
+            arrTikTakToeBoard[1][resetFirstRow] = " ";
+        }
+
+        // Resetting The Third Row Of The Board
+        for (int resetFirstRow = 0; resetFirstRow < 3; resetFirstRow++)
+        {
+            arrTikTakToeBoard[2][resetFirstRow] = " ";
+        }
+
+        cout << "Enter 1 To Go Against AI" << endl;
+        cout << "Enter 2 To Go Against A Friend" << endl;
+        cout << "1 Or 2? ";
+        cin >> decision;
+        cout << " " << endl;
+
+        
+        
+        // Person Vers AI Code
+        if (decision == 1) 
+        {
+            cout << "Human Is X !" << endl;
+            cout << "AI Is O !" << endl;
+            cout << "Good luck Human!" << endl;
+            cout << " " << endl;
+        }
+        
+
+            
+        if (decision == 1 || decision == 2) {
+            for (int control = 0; control < 9; control++)
+            {
+
+
+                int row = 0;
+                int column = 0;
+
+                // Reason For Checking 0 And 1 But Not Any Number After That Is Because 
+                // im using control % 2 and 0 and 1 will always give you a remainder so I cant
+                // use those as valid numbers to check if its X's or O's Turn 
+
+                if (control == 0)
+                {
+                    cout << "Letter X Move" << endl;
+                    cout << "Row: ";
+                    cin >> row;
+                    cout << "Column: ";
+                    cin >> column;
+
+                    if (row > 0 && row < 4 && column > 0 && column < 4)
+                    {
+                        arrTikTakToeBoard[row - 1][column - 1] = "X";
+                    }
+                    else
+                    {
+                        cout << "Please Enter The Correct Coordinate" << endl;
+                        control -= 1;
+                    }
+                }
+                else if (control == 1)
+                {
+                    if (decision == 1) 
+                    {
+                        row = 1 + rand() % 3;
+                        column = 1 + rand() % 3;
+
+                      
+                        cout << "AI's Move" << endl;
+                        
+                    }
+                    else
+                    {
+                        cout << "Letter O Move " << endl;
+                        cout << "Row: ";
+                        cin >> row;
+                        cout << "Column: ";
+                        cin >> column;
+                    }
+                    
+
+                    if (arrTikTakToeBoard[row - 1][column - 1] == "X" && arrTikTakToeBoard[row - 1][column - 1] == "O")
+                    {
+                        cout << " " << endl;
+                        cout << "That Spot Is Taken! Please Enter A free spot!" << endl;
+                        control -= 1;
+                    }
+                    else
+                    {
+
+                        if (row > 0 && row < 4 && column > 0 && column < 4)
+                        {
+                            arrTikTakToeBoard[row - 1][column - 1] = "O";
+                        }
+                        else
+                        {
+                            cout << "Please Enter The Correct Coordinate" << endl;
+                            control -= 1;
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    // remainder is to see if it's X or O's turn
+                    double remainder = control % 2;
+
+                    if (remainder == 0.0)
+                    {
+
+                        // Letter X Moves
+                        cout << "Letter X Move" << endl;
+                        cout << "Row: ";
+                        cin >> row;
+                        cout << "Column: ";
+                        cin >> column;
+
+                        // Getting Where They Put There letter X
+                        if (arrTikTakToeBoard[row - 1][column - 1] != "X" && arrTikTakToeBoard[row - 1][column - 1] != "O") {
+
+                            if (row > 0 && row < 4 && column > 0 && column < 4)
+                            {
+                                arrTikTakToeBoard[row - 1][column - 1] = "X";
+                            }
+                            else
+                            {
+                                cout << "Please Enter The Correct Coordinate" << endl;
+                                control -= 1;
+                            }
+                        }
+                        else
+                        {
+                            cout << "That Spot Is Taken! Please Enter A free spot!" << endl;
+                            control -= 1;
+                        }
+
+                    }
+                    else
+                    {
+                        // Letter O Moves
+
+                        if (decision == 1) 
+                        {
+                            row = 1 + rand() % 3;
+                            column = 1 + rand() % 3;
+                        }
+                        else
+                        {
+                            cout << "Letter O Move " << endl;
+                            cout << "Row: ";
+                            cin >> row;
+                            cout << "Column: ";
+                            cin >> column;
+                        }
+                        
+
+                        // Getting Where They Want To Put There Letter O
+                        if (arrTikTakToeBoard[row - 1][column - 1] != "X" && arrTikTakToeBoard[row - 1][column - 1] != "O")
+                        {
+                            if (row > 0 && row < 4 && column > 0 && column < 4)
+                            {
+                                arrTikTakToeBoard[row - 1][column - 1] = "O";
+                                if (decision == 1)
+                                {
+                                    cout << "AI's Move" << endl;
+                                }
+                            }
+                            else
+                            {
+                                cout << "Please Enter The Correct Coordinate" << endl;
+                                control -= 1;
+                            }
+                        }
+                        else
+                        {
+                            cout << "That Spot Is Taken! Please Enter A free spot!" << endl;
+                            control -= 1;
+                        }
+
+                    }
+
+                    int columnCheck = 1;
+
+                    // once its greater than 3 I can check if one letter has gotten won because X has more than 3 X's placed on the bored
+                    if (control > 3)
+                    {
+                        for (int x = 0; x < 3; x++)
+                        {
+                            // Horizontal Check For X
+                            if (arrTikTakToeBoard[x][0] == "X" && arrTikTakToeBoard[x][1] == "X" && arrTikTakToeBoard[x][2] == "X")
+                            {
+                                cout << " " << endl;
+                                cout << "X Wins! Sorry O :(" << endl;
+
+                                x = 4;
+                                control = 9;
+                            }
+                            // Horizontal Check For O
+                            else if (arrTikTakToeBoard[x][0] == "O" && arrTikTakToeBoard[x][1] == "O" && arrTikTakToeBoard[x][2] == "O")
+                            {
+                                cout << " " << endl;
+                                cout << "O Wins! Sorry X :(" << endl;
+                                x = 4;
+                                control = 9;
+                            }
+
+                        }
+
+                        // Vertical Check For X
+                        for (int y = 0; y < 3; y++)
+                        {
+                            if (arrTikTakToeBoard[0][y] == "X" && arrTikTakToeBoard[1][y] == "X" && arrTikTakToeBoard[2][y] == "X")
+                            {
+                                cout << " " << endl;
+                                cout << "X Wins! Sorry O :(" << endl;
+                                y = 4;
+                                control = 9;
+                            }
+                            // Vertical Check For O
+                            else if (arrTikTakToeBoard[0][y] == "O" && arrTikTakToeBoard[1][y] == "O" && arrTikTakToeBoard[2][y] == "O")
+                            {
+                                cout << " " << endl;
+                                cout << "O Wins! Sorry X :(" << endl;
+                                y = 4;
+                                control = 9;
+                            }
+                        }
+
+                        // Diagonal Check 
+                        if (arrTikTakToeBoard[0][0] == "X" && arrTikTakToeBoard[1][1] == "X" && arrTikTakToeBoard[2][2] == "X")
+                        {
+                            cout << " " << endl;
+                            cout << "X Wins! Sorry O :(" << endl;
+                            control = 9;
+                        }
+                        else if (arrTikTakToeBoard[0][2] == "X" && arrTikTakToeBoard[1][1] == "X" && arrTikTakToeBoard[2][0] == "X")
+                        {
+                            cout << " " << endl;
+                            cout << "X Wins! Sorry O :(" << endl;
+                            control = 9;
+                        }
+                        else if (arrTikTakToeBoard[0][0] == "O" && arrTikTakToeBoard[1][1] == "O" && arrTikTakToeBoard[2][2] == "O")
+                        {
+                            cout << " " << endl;
+                            cout << "O Wins! Sorry X :(" << endl;
+                            control = 9;
+                        }
+                        else if (arrTikTakToeBoard[0][2] == "O" && arrTikTakToeBoard[1][1] == "O" && arrTikTakToeBoard[2][0] == "O")
+                        {
+                            cout << " " << endl;
+                            cout << "O Wins! Sorry X :(" << endl;
+                            control = 9;
+                        }
+                    }
+                }
+
+                //cout << " " << endl;
+
+                
+                cout << "      C:1 C:2 C:3" << endl;
+                cout << " " << endl;
+                cout << "      - - - - - - " << endl;
+                cout << "R:1   " << " " << arrTikTakToeBoard[0][0] + " | " + arrTikTakToeBoard[0][1] + " | " + arrTikTakToeBoard[0][2] << endl;
+                cout << "      - - - - - - " << endl;
+                cout << "R:2   " << " " << arrTikTakToeBoard[1][0] + " | " + arrTikTakToeBoard[1][1] + " | " + arrTikTakToeBoard[1][2] << endl;
+                cout << "      - - - - - - " << endl;
+                cout << "R:3   " << " " << arrTikTakToeBoard[2][0] + " | " + arrTikTakToeBoard[2][1] + " | " + arrTikTakToeBoard[2][2] << endl;
+                cout << "      - - - - - - " << endl;
+                cout << " " << endl;
+
+
+            }
+
+        }
+       
+        else
+        {
+            cout << "OOPS! Thats not a option! Please Enter 1 Or 2";
+            cout << " " << endl;
+            cout << " " << endl;
+        }
+    }
+    
+
+    
+
+}
+
+
+           
