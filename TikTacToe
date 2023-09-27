@@ -30,6 +30,7 @@ int main()
 
     int decision = 0;
     int sentinal = 0;
+    int level;
 
     cout << " " << endl;
     cout << "      C:1 C:2 C:3" << endl;
@@ -67,6 +68,14 @@ int main()
         cout << "Enter 2 To Go Against A Friend" << endl;
         cout << "1 Or 2? ";
         cin >> decision;
+        
+        if (decision == 1)
+        {
+           cout << "What Level (1 = Easy; 2 = Medium; 3 = Hard): ";
+           cin >> level;
+
+            
+        }
         cout << " " << endl;
 
         
@@ -74,8 +83,29 @@ int main()
         // Person Vers AI Code
         if (decision == 1) 
         {
+            
             cout << "Human Is X !" << endl;
             cout << "AI Is O !" << endl;
+            cout << "Level: ";
+            
+            if (level == 1)
+            {
+                cout << "Easy" << endl;
+            }
+            else if (level == 2)
+            {
+                cout << "Medium" << endl;
+            }
+            else if (level == 3)
+            {
+                cout << "Hard" << endl;
+            }
+            else 
+            {
+                cout << "Please Enter A AI Level!" << endl;
+                cout << "What Level (1 = Easy; 2 = Medium; 3 = Hard): ";
+                cin >> level;
+            }
             cout << "Good luck Human!" << endl;
             cout << " " << endl;
         }
@@ -340,6 +370,3 @@ int main()
     
 
 }
-
-
-           
